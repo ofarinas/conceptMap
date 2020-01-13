@@ -11,19 +11,23 @@ export class VideoRecognitionComponent implements OnInit, AfterViewInit {
   constructor() {
   }
 
-  playVideo() {
+  async playVideo() {
     const video = document.getElementById('video') as HTMLVideoElement;
+    if (this.isMobile()) {
+      const promise = await navigator.mediaDevices.getUserMedia({audio: true, video: true});
+      video.srcObject = promise;
+    }
     navigator.getUserMedia({video: {facingMode: (this.isMobile() ? 'user' : 'environment')}},
       stream => video.srcObject = stream,
       error => console.log(error));
   }
 
   isIOS() {
-    return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    return !! navigator.userAgent.match(/iPhone|iPad|iPod/i);
   }
 
   isAndroid() {
-    return navigator.userAgent.match(/Android/i);
+    return !!navigator.userAgent.match(/Android/i);
   }
 
   isMobile() {
