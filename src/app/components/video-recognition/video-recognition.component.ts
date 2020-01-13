@@ -23,7 +23,7 @@ export class VideoRecognitionComponent implements OnInit, AfterViewInit {
           alert('inside');
           video.play();
         }
-      );
+      ).catch(error => alert(error));
     }
     navigator.getUserMedia({video: {facingMode: (this.isMobile() ? 'user' : 'environment')}},
       stream => video.srcObject = stream,
