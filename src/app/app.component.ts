@@ -11,6 +11,7 @@ import {Observable} from 'rxjs';
 export class AppComponent {
   title = 'offerUserApp';
   count$: Observable<number>;
+  name: any;
 
   constructor(private store: Store<{ count: number }>) {
     this.count$ = store.pipe(select('count'));

@@ -4,9 +4,10 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {counterReducer} from './reducers/counter.reducer';
-import {ActionReducer, State, StoreModule} from '@ngrx/store';
+import {ActionReducer, StoreModule} from '@ngrx/store';
 import {storeLogger} from 'ngrx-store-logger';
 import {environment} from '../environments/environment';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 export function logger(reducer: ActionReducer<{ count: number }>): any {
@@ -21,9 +22,12 @@ export const metaReducers = environment.production ? [] : [logger];
     AppComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({count: counterReducer}, {metaReducers})
+    StoreModule.forRoot({count: counterReducer}, {metaReducers}),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
