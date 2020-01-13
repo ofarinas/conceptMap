@@ -13,13 +13,7 @@ export class VideoRecognitionComponent implements OnInit, AfterViewInit {
 
   async playVideo() {
     const constraints = {
-      video: {
-        facingMode: 'environment',
-        mandatory: {
-          maxWidth: 333,
-          maxHeight: 333
-        }
-      }
+      video: true
     };
     const video = document.getElementById('video') as HTMLVideoElement;
     if (this.isMobile()) {
