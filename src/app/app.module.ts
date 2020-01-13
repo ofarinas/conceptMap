@@ -8,6 +8,7 @@ import {ActionReducer, StoreModule} from '@ngrx/store';
 import {storeLogger} from 'ngrx-store-logger';
 import {environment} from '../environments/environment';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { VideoRecognitionComponent } from './components/video-recognition/video-recognition.component';
 
 
 export function logger(reducer: ActionReducer<{ count: number }>): any {
@@ -19,7 +20,8 @@ export const metaReducers = environment.production ? [] : [logger];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VideoRecognitionComponent
   ],
   imports: [
     FormsModule,
