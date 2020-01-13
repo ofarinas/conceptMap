@@ -12,9 +12,18 @@ export class VideoRecognitionComponent implements OnInit, AfterViewInit {
   }
 
   async playVideo() {
+    const constraints = {
+      video: {
+        facingMode: 'environment',
+        mandatory: {
+          maxWidth: 333,
+          maxHeight: 333
+        }
+      }
+    };
     const video = document.getElementById('video') as HTMLVideoElement;
     if (this.isMobile()) {
-      const promise = await navigator.mediaDevices.getUserMedia({audio: true, video: true});
+      const promise = await navigator.mediaDevices.getUserMedia(constraints);
       video.srcObject = promise;
     }
     navigator.getUserMedia({video: {facingMode: (this.isMobile() ? 'user' : 'environment')}},
@@ -23,7 +32,7 @@ export class VideoRecognitionComponent implements OnInit, AfterViewInit {
   }
 
   isIOS() {
-    return !! navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    return !!navigator.userAgent.match(/iPhone|iPad|iPod/i);
   }
 
   isAndroid() {
